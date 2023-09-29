@@ -3,7 +3,10 @@ const productoService = require('../services/productos.services');
 const service = new productoService();
 const express = require('express');
 const router = express.Router();
-
+const {createProductoSchema,
+    updateProductoSchema,
+    getProductoSchema}=require('../schema/producto.schema')
+const validatorHandler=require('../middlewares/validator.handler')
 
 function routerApi(app){
     app.use('/products',productsRouter);
@@ -30,6 +33,15 @@ router.get('/:id',async (req,res)=>{
     res.json(producto);
 });
 
+router.post('/',validatorHandler(createProductoSchema,'body'),
+async(req,res)=>{
+    const body= req.body;
+    const Newproducto = await service.create(body);
+    res.json({
+        message:'created',
+        data:Newproducto
 
+    });
+});
 }
 module.exports= routerApi;
