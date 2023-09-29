@@ -2,17 +2,11 @@ const express = require('express');
 const {logError,errorHandler,boomErrorHandler} = require('./middlewares/error.handler') 
 //const routerApi= require('./routers/productos.router')
 const routerApi = require('./routers/index');
-//const { createProductoSchema,
-  //  updateProductoSchema,
-  //  getProductoSchema} = require('./schema/producto.schema')
-
+const cors = require('cors')
 const app = express();
-const cors = require('cors');
 const port = 3000;
 
-
 app.use(express.json());
-
 
 const whitelist = ['http://localhost:3000','http://myapp.com'];
 const options = {
@@ -27,7 +21,7 @@ const options = {
 
 
 
-app.use(cors());
+app.use(cors(options));
 
 routerApi(app);
 
