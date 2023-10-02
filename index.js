@@ -1,12 +1,15 @@
 const express = require('express');
-const {logError,errorHandler,boomErrorHandler} = require('./middlewares/error.handler') 
-//const routerApi= require('./routers/productos.router')
 const routerApi = require('./routers/index');
 const cors = require('cors')
+const path = require('path')
 const app = express();
 const port = 3000;
 
-app.use(express.json());
+
+//const {logError,errorHandler,boomErrorHandler} = require('./middlewares/error.handler') 
+//const routerApi= require('./routers/productos.router')
+
+//app.use(express.json());
 
 const whitelist = ['http://localhost:3000','http://myapp.com'];
 const options = {
@@ -21,21 +24,22 @@ const options = {
 
 
 
-app.use(cors(options));
+//app.use(cors(options));
 
-routerApi(app);
+app.use(routerApi)
 
-app.use(logError);
-app.use(errorHandler);
-app.use(boomErrorHandler);
+// app.use(logError);
+// app.use(errorHandler);
+// app.use(boomErrorHandler);
+
+
 app.get('/',(req,res)=>{
-    res.send('primer servicio')
+  res.send('primer servicio')
 });
 
- app.listen(port,()=>{
-    console.log('¡vamos que si puedes! repitelo ' + port+' veces');
- });
 
 
+app.listen(port,()=>{
+  console.log('¡vamos que si puedes! repitelo ' + port+' veces');
+});
 
- 

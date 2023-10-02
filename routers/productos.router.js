@@ -9,18 +9,17 @@ const {createProductoSchema,
 const validatorHandler=require('../middlewares/validator.handler')
 
 function routerApi(app){
-    app.use('/products',productsRouter);
+  
 
-
-router.get('/',(req,res)=>{
-    const products=[{},{}];
-    const {size}=req.query;
-    res.json(products);
-});
-router.get('/',(req,res)=>{
-    const product=service.find();
-    res.json(product);
-})
+// router.get('/',(req,res)=>{
+//     const products=[{},{}];
+//     const {size}=req.query;
+//     res.json(products);
+// });
+// router.get('/',(req,res)=>{
+//     const product=service.find();
+//     res.json(product);
+// })
 
 router.get('/:id',(req,res)=>{
     const{id}=req.params;
